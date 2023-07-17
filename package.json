@@ -8,8 +8,5 @@
     "client",
     "server"
   ],
-  "scripts": {
-    "client": "yarn workspaces client start",
-    "server": "yarn workspaces server start"
-  }
+  "scripts": {}
 }
