@@ -2,11 +2,16 @@
   "name": "local_api",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": "https://github.com/sunnyheee/REST_API.git",
+  "author": "sunnyheee <fool0116@naver.com>",
   "license": "MIT",
   "private": true,
   "workspaces": [
     "client",
     "server"
   ],
-  "scripts": {}
+  "scripts": {
+    "client": "yarn workspace client start",
+    "server": "yarn workspace server start"
+  }
 }
