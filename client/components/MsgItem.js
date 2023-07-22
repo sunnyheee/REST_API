@@ -1,4 +1,15 @@
-const MsgItem = ({ userId, timestamp, text }) => (
+import MsgInput from "./MagInput";
+
+const MsgItem = ({
+  id,
+  userId,
+  timestamp,
+  text,
+  onUpdate,
+  isEditing,
+  startEdit,
+  onDelete,
+}) => (
   <li className="messages__item">
     <h3>
       {userId}{" "}
@@ -13,7 +24,17 @@ const MsgItem = ({ userId, timestamp, text }) => (
         })}
       </sub>
     </h3>
-    {text}
+    {isEditing ? (
+      <>
+        <MsgInput mutate={onUpdate} id={id} text={text} />
+      </>
+    ) : (
+      text
+    )}
+    <div className="messages__buttons">
+      <button onClick={startEdit}>修正</button>
+      <button onClick={onDelete}>削除</button>
+    </div>
   </li>
 );
 
