@@ -34,16 +34,21 @@ const messagesRoute = [
     method: "post",
     route: "/messages",
     handler: ({ body }, res) => {
-      const msgs = getMsgs();
-      const newMsg = {
-        id: v4(),
-        text: body.text,
-        userId: body.userId,
-        timestamp: Date.now(),
-      };
-      msgs.unshift(newMsg);
-      setMsgs(msgs);
-      res.send(newMsg);
+      try {
+        if (!body.userId) throw Error("no userId");
+        const msgs = getMsgs();
+        const newMsg = {
+          id: v4(),
+          text: body.text,
+          userId: body.userId,
+          timestamp: Date.now(),
+        };
+        msgs.unshift(newMsg);
+        setMsgs(msgs);
+        res.send(newMsg);
+      } catch (err) {
+        res.status(500).send({ error: err });
+      }
     },
   },
   {
@@ -71,12 +76,12 @@ const messagesRoute = [
     //DELETE MESSAGES
     method: "delete",
     route: "/messages/:id",
-    handler: ({ body, params: { id } }, res) => {
+    handler: ({ params: { id }, query: { userId } }, res) => {
       try {
         const msgs = getMsgs();
         const targetIndex = msgs.findIndex((msg) => msg.id === id);
         if (targetIndex < 0) throw "messagesがないです。";
-        if (msgs[targetIndex].userId !== body.userId) throw "userが違います。";
+        if (msgs[targetIndex].userId !== userId) throw "userが違います。";
 
         msgs.splice(targetIndex, 1);
         setMsgs(msgs);
