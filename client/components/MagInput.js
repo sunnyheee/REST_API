@@ -16,9 +16,9 @@ const MsgInput = ({ mutate, text = "", id = undefined }) => {
       <textarea
         ref={textRef}
         defaultValue={text}
-        placeholder="내용을 입력하세요."
+        placeholder="内容を入力してください"
       />
-      <button type="submit">완료</button>
+      <button type="submit">完了</button>
     </form>
   );
 };
