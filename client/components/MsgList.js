@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import MsgInput from "./MagInput";
+import MsgInput from "./MsgInput";
 import MsgItem from "./MsgItem";
 import fetcher from "../fetcher";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";

@@ -1,4 +1,4 @@
-import MsgInput from "./MagInput";
+import MsgInput from "./MsgInput";
 
 const MsgItem = ({
   id,
