@@ -1,19 +1,19 @@
 import MsgInput from "./MsgInput";
-
 const MsgItem = ({
   id,
   userId,
   timestamp,
   text,
   onUpdate,
+  onDelete,
   isEditing,
   startEdit,
-  onDelete,
   myId,
+  user,
 }) => (
   <li className="messages__item">
     <h3>
-      {userId}{" "}
+      {user?.nickname}{" "}
       <sub>
         {new Date(timestamp).toLocaleString("ko-KR", {
           year: "numeric",
@@ -25,13 +25,15 @@ const MsgItem = ({
         })}
       </sub>
     </h3>
+
     {isEditing ? (
       <>
-        <MsgInput mutate={onUpdate} id={id} text={text} />
+        <MsgInput mutate={onUpdate} text={text} id={id} />
       </>
     ) : (
       text
     )}
+
     {myId === userId && (
       <div className="messages__buttons">
         <button onClick={startEdit}>修正</button>
